@@ -1,49 +1,53 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import ReactHtmlParser from "react-html-parser";
 
 import { useGlobalContext } from "helpers/hooks/useGlobalContext";
 import "helpers/format/currency";
+import useAsync from "helpers/hooks/useAsync";
 
 export default function ProductDetails({ data }) {
+  // const { data, error, run, isLoading } = useAsync();
   const [slider, setSlider] = React.useState(() => data?.imgUrls?.[0] || "");
 
   const { dispatch } = useGlobalContext();
+  // useEffect(() => {
+  //   run(fetch({ url: "/api/product/{}" }));
+  // }, [run]);
 
   return (
     <section className="container mx-auto">
       <div className="flex flex-wrap my-4 md:my-12">
         <div className="w-full md:hidden px-4">
-          <h2 className="text-5xl font-semibold">{data.title}</h2>
-          <span className="text-xl">{data.price.currency()}</span>
+          <h2 className="text-5xl font-semibold mb-2">{data.product_name}</h2>
+          <span className="text-xl mt-3">{data.price.currency()}</span>
         </div>
         <div className="flex-1">
           <div className="slider">
             <div className="thumbnail">
-              {data?.imgUrls?.map((item) => {
-                return (
-                  <div
+              {/* {data?.image?.map((item) => {
+                return ( */}
+              {/* <div
                     className="px-2"
                     key={item}
                     onClick={() => setSlider(item)}
-                  >
-                    <div
+                  > */}
+              {/* <div
                       className={[
                         "item",
                         slider === item ? "bg-gray-100 selected" : "",
                       ].join(" ")}
-                    >
-                      <img
-                        src={item}
-                        alt={item}
-                        className="object-cover w-full h-full rounded-lg"
-                      />
-                    </div>
-                  </div>
-                );
-              })}
+                    > */}
+              <img
+                src={`http://localhost:8000/storage/images/${data.image}`}
+                className="object-cover w-full h-full rounded-lg"
+              />
+              {/* </div> */}
+              {/* </div> */}
+              {/* );
+              })} */}
             </div>
-            <div className="preview">
+            {/* <div className="preview">
               <div className="item rounded-lg h-full overflow-hidden">
                 <img
                   src={slider}
@@ -51,11 +55,11 @@ export default function ProductDetails({ data }) {
                   className="object-cover w-full h-full rounded-lg"
                 />
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
         <div className="flex-1 px-4 md:p-6">
-          <h2 className="text-5xl font-semibold">{data.title}</h2>
+          <h2 className="text-5xl font-semibold">{data.product_name}</h2>
           <p className="text-xl">{data.price.currency()}</p>
 
           <button

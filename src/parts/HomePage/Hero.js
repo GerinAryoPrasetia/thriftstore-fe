@@ -16,7 +16,8 @@ export default function Hero() {
         <div>
           <a
             href="#browse-the-room"
-            className="bg-pink-400 text-black hover:bg-black hover:text-pink-400 rounded-full px-8 py-3 mt-4 inline-block flex-none transition duration-200"
+            className=" text-black hover:bg-black  rounded-full px-8 py-3 mt-4 inline-block flex-none transition duration-200"
+            style={{ backgroundColor: "#75ACC0", color: "white" }}
           >
             Explore Now
           </a>

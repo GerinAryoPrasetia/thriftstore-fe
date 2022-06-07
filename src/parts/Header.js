@@ -28,7 +28,7 @@ export default function Header({ theme, position }) {
           <div className="w-56 items-center flex">
             <Link to="/">
               <img
-                src="/images/content/logo.png"
+                src="/images/content/logo_thriftshop.png"
                 alt="Luxspace | Fulfill your house with beautiful furniture"
               />
             </Link>
@@ -43,6 +43,19 @@ export default function Header({ theme, position }) {
                   : "invisible opacity-0",
               ].join(" ")}
             >
+              <li className="mx-3 py-6 md:py-0">
+                <Link
+                  to="/delivery"
+                  className={[
+                    "hover:underline",
+                    theme === "white"
+                      ? "text-black md:text-white "
+                      : "text-white md:text-black",
+                  ].join(" ")}
+                >
+                  Seller
+                </Link>
+              </li>
               <li className="mx-3 py-6 md:py-0">
                 <Link
                   to="/showcase"

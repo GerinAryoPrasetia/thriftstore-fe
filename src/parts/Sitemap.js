@@ -49,7 +49,7 @@ export default function Sitemap() {
       <div className="border-b border-gray-200 py-12 mt-16 px-4">
         <div className="flex justify-center mb-8">
           <img
-            src="/images/content/logo.png"
+            src="/images/content/logo_thriftshop.png"
             alt="Luxspace | Fulfill your house with beautiful furniture"
           />
         </div>
@@ -132,7 +132,10 @@ export default function Sitemap() {
                     className="bg-gray-100 rounded-xl py-3 px-5 w-full focus:outline-none"
                     placeholder="Your email adress"
                   />
-                  <button className="bg-pink-400 absolute rounded-xl right-0 p-3">
+                  <button
+                    className="absolute rounded-xl right-0 p-3"
+                    style={{ backgroundColor: "#75ACC0" }}
+                  >
                     <svg
                       width="24"
                       height="24"

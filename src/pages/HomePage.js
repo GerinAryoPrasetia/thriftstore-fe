@@ -9,6 +9,7 @@ import Sitemap from "parts/Sitemap";
 import Footer from "parts/Footer";
 
 import Document from "parts/Document";
+import Products from "parts/HomePage/Products";
 
 export default function HomePage() {
   return (
@@ -18,6 +19,7 @@ export default function HomePage() {
       {/* <BrowseRoom /> */}
       {/* <JustArrived /> */}
       {/* <Clients /> */}
+      <Products />
       <Sitemap />
       <Footer />
     </Document>
