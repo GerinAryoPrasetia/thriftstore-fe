@@ -1,12 +1,15 @@
-import React, { useLayoutEffect, useRef, useState } from "react";
+import React, { useLayoutEffect, useRef, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 import { useGlobalContext } from "helpers/hooks/useGlobalContext";
 
 import { ReactComponent as IconCart } from "assets/images/icon-cart.svg";
+
 export default function Header({ theme, position }) {
   const [toggleMainMenu, setToggleMainMenu] = useState(false);
   const [isCartChanged, setCartChanged] = useState(false);
+  const [token, setToken] = useState("");
+  const [isAuth, setIsAuth] = useState(false);
   const { state } = useGlobalContext();
 
   const prevCart = useRef(state?.cart || {});
@@ -20,6 +23,14 @@ export default function Header({ theme, position }) {
       }, 550);
     }
   }, [state.cart]);
+
+  useEffect(() => {
+    let token = localStorage.getItem("token");
+    setToken(token);
+    if (token !== null) {
+      setIsAuth(true);
+    }
+  }, []);
 
   return (
     <header className={[position, "w-full z-40 px-4"].join(" ")}>
@@ -135,23 +146,37 @@ export default function Header({ theme, position }) {
                   </svg>
                 </button>
               </li>
-              <li className="ml-6">
-                <Link
-                  className={[
-                    "cart flex items-center justify-center w-8 h-8",
-                    theme === "white"
-                      ? "text-black md:text-white"
-                      : "text-black md:text-black",
-                    state.cart && Object.keys(state.cart).length > 0
-                      ? "cart-filled"
-                      : "",
-                    isCartChanged ? "animate-bounce" : "",
-                  ].join(" ")}
-                  to="/cart"
-                >
-                  <IconCart />
-                </Link>
-              </li>
+              {isAuth ? (
+                <li className="ml-6">
+                  <Link
+                    className={[
+                      "cart flex items-center justify-center w-8 h-8",
+                      theme === "white"
+                        ? "text-black md:text-white"
+                        : "text-black md:text-black",
+                      state.cart && Object.keys(state.cart).length > 0
+                        ? "cart-filled"
+                        : "",
+                      isCartChanged ? "animate-bounce" : "",
+                    ].join(" ")}
+                    to="/cart"
+                  >
+                    <IconCart />
+                  </Link>
+                </li>
+              ) : (
+                <li class="ml-6">
+                  <div>
+                    <Link
+                      to="/login"
+                      className=" text-black hover:bg-black  rounded-full px-8 py-3 mt-4 inline-block flex-none transition duration-200"
+                      style={{ backgroundColor: "#75ACC0", color: "white" }}
+                    >
+                      Login
+                    </Link>
+                  </div>
+                </li>
+              )}
             </ul>
           </div>
         </div>

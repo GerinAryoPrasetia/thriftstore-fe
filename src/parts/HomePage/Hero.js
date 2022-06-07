@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
@@ -14,13 +15,13 @@ export default function Hero() {
           yang membuat anda terlihat lebih berkelas
         </h2>
         <div>
-          <a
-            href="#browse-the-room"
+          <Link
+            to="/showcase"
             className=" text-black hover:bg-black  rounded-full px-8 py-3 mt-4 inline-block flex-none transition duration-200"
             style={{ backgroundColor: "#75ACC0", color: "white" }}
           >
             Explore Now
-          </a>
+          </Link>
         </div>
       </div>
       <div className="w-full inset-0 md:relative md:w-1/2">
