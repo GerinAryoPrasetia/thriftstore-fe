@@ -12,6 +12,10 @@ import ProductDetails from "parts/Details/ProductDetails";
 import Showcase from "pages/Showcase";
 import Login from "pages/Login";
 import Register from "pages/Register";
+import Dashboard from "seller/pages/Dashboard";
+import Upload from "seller/pages/Upload";
+import LoginSeller from "seller/pages/auth/Login";
+import RegisterSeller from "seller/pages/auth/Register";
 
 function App() {
   return (
@@ -26,6 +30,11 @@ function App() {
           <Route path="/congratulation" component={Congratulation} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          {/* seller */}
+          <Route path="/seller/dashboard" component={Dashboard} />
+          <Route path="/seller/upload" component={Upload} />
+          <Route path="/seller/login" component={LoginSeller} />
+          <Route path="/seller/register" component={RegisterSeller} />
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>

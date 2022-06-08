@@ -56,7 +56,7 @@ export default function Header({ theme, position }) {
             >
               <li className="mx-3 py-6 md:py-0">
                 <Link
-                  to="/delivery"
+                  to="/seller/dashboard"
                   className={[
                     "hover:underline",
                     theme === "white"
