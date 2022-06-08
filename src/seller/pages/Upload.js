@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Sidebard from "seller/components/Sidebard";
 
 const Upload = () => {
@@ -10,6 +11,18 @@ const Upload = () => {
   const [selectedImage, setSelectedImage] = useState();
   const [open, setOpen] = useState(false);
   const [sellerId, setSellerId] = useState("");
+
+  const successUpload = () => {
+    toast.success("Upload Berhasil", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+    });
+  };
 
   useEffect(() => {
     setSellerId(localStorage.getItem("id_seller"));
@@ -42,8 +55,9 @@ const Upload = () => {
         }
       );
       let resJson = await res.json();
-      if (resJson.code === 201) {
+      if (resJson.message === "Product Saved") {
         setOpen(true);
+        successUpload();
       }
     } catch (error) {
       console.log(error);
@@ -53,6 +67,21 @@ const Upload = () => {
   return (
     <div className="flex flex-row">
       <Sidebard />
+      <div>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+        />
+        {/* Same as */}
+        <ToastContainer />
+      </div>
       <div className="flex flex-col w-full items-center min-h-screen pt-6 bg-gray-100 sm:justify-center sm:pt-0">
         <div className="w-full px-16 py-20 mt-6 overflow-hidden bg-white rounded-lg lg:max-w-4xl">
           <div className="mb-4">
@@ -62,7 +91,7 @@ const Upload = () => {
           </div>
 
           <div className="w-full px-6 py-4 bg-white rounded shadow-md ring-1 ring-gray-900/10">
-            <form>
+            <div>
               <div>
                 <label
                   className="block text-sm font-bold text-gray-700"
@@ -109,7 +138,7 @@ const Upload = () => {
                   type="text"
                   name="Size"
                   placeholder="ex : S"
-                  onChange={(e) => setPrice(e.target.value)}
+                  onChange={(e) => setSize(e.target.value)}
                 />
               </div>
 
@@ -147,20 +176,19 @@ const Upload = () => {
 
               <div className="flex items-center justify-start mt-4 gap-x-2">
                 <button
-                  type="submit"
+                  onClick={handleSubmit}
                   className="px-6 py-2 text-sm font-semibold rounded-md shadow-md text-sky-100 bg-sky-500 hover:bg-sky-700 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300"
                 >
                   Save
                 </button>
                 <button
-                  onClick={handleSubmit}
                   type="submit"
                   className="px-6 py-2 text-sm font-semibold text-gray-100 bg-gray-400 rounded-md shadow-md hover:bg-gray-600 focus:outline-none focus:border-gray-900 focus:ring ring-gray-300"
                 >
                   Cancel
                 </button>
               </div>
-            </form>
+            </div>
           </div>
         </div>
       </div>
