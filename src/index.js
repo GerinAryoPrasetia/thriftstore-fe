@@ -1,3 +1,4 @@
+import Context from "context/Context";
 import React from "react";
 import ReactDOM from "react-dom";
 
@@ -6,7 +7,9 @@ import reportWebVitals from "./reportWebVitals";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Context>
+      <App />
+    </Context>
   </React.StrictMode>,
   document.getElementById("root")
 );

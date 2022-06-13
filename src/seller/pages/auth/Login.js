@@ -115,24 +115,24 @@ const LoginSeller = () => {
                   />
                 </div>
               </div>
-              <Link
+              <button
                 onClick={handleSubmit}
                 className="border-2 border-none bg-blue-300 text-white rounded-full px-12 py-2 inline-block mt-4 font-semibold hover:bg-white hover:text-blue-300 hover:border-blue-300 hover:border-2"
               >
                 Sign In
-              </Link>
+              </button>
             </div>
           </div>
           <div className="w-2/5 bg-blue-300 text-white rounded-tr-2xl rounded-br-2xl py-36 px-12">
             <h2 className="text-3xl font-bold mb-2">Hello!</h2>
             <div className="border-2 w-10 border-white inline-block mb-2"></div>
             <p className="mb-2">Shopping Made Fun With ThriftStore</p>
-            <a
-              href="/register"
+            <Link
+              to="/seller/register"
               className="border-2 border-white rounded-full px-12 py-2 inline-block mt-4 font-semibold hover:bg-white hover:text-blue-300"
             >
               Sign Up
-            </a>
+            </Link>
           </div>
         </div>
       </main>

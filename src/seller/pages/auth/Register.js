@@ -38,7 +38,7 @@ const RegisterSeller = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      let res = await fetch("http://localhost:8000/api/register", {
+      let res = await fetch("http://localhost:8000/api/seller/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -76,7 +76,9 @@ const RegisterSeller = () => {
               <span className="text-blue-300">Thrift</span>Store
             </div>
             <div className="py-10">
-              <h2 className="text-3xl font-bold text-blue-300 mb-2">Sign Up</h2>
+              <h2 className="text-3xl font-bold text-blue-300 mb-2">
+                Sign Up as Seller
+              </h2>
               <div className="border-2 w-10 border-blue-300 inline-block mb-2"></div>
               <div className="flex flex-col items-center">
                 <div className="bg-gray-100 w-64 p-4 flex items-center">
@@ -130,12 +132,12 @@ const RegisterSeller = () => {
                   />
                 </div>
               </div>
-              <Link
+              <button
                 onClick={handleSubmit}
                 className="border-2 border-none bg-blue-300 text-white rounded-full px-12 py-2 inline-block mt-4 font-semibold hover:bg-white hover:text-blue-300 hover:border-blue-300 hover:border-2"
               >
                 Sign Up
-              </Link>
+              </button>
             </div>
           </div>
           <div className="w-2/5 bg-blue-300 text-white rounded-tr-2xl rounded-br-2xl py-36 px-12">
@@ -145,12 +147,12 @@ const RegisterSeller = () => {
               Already Have an Account? <br />
               Sign In Instead
             </p>
-            <a
-              href="/login"
+            <Link
+              to="/seller/login"
               className="border-2 border-white rounded-full px-12 py-2 inline-block mt-4 font-semibold hover:bg-white hover:text-blue-300"
             >
               Sign In
-            </a>
+            </Link>
           </div>
         </div>
       </main>
