@@ -33,7 +33,8 @@ const ProductList = () => {
   // }, [run]);
   return (
     <section className="mt-10">
-      <div>
+      <div className="container m-auto">
+        <h2 className="font-bold text-3xl mb-4">All Products</h2>
         <div className="grid grid-cols-4 gap-4">
           {state.products?.map((prod) => {
             return (
@@ -56,7 +57,7 @@ const ProductList = () => {
                     Rp {prod.price}
                   </p>
                   <Link
-                    href="#"
+                    to={`/products/${prod.id}`}
                     class="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                   >
                     Detail

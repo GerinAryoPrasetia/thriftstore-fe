@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import { useGlobalContext } from "helpers/hooks/useGlobalContext";
 
 import { ReactComponent as IconCart } from "assets/images/icon-cart.svg";
+import { CartState } from "context/Context";
 
 export default function Header({ theme, position }) {
   const [toggleMainMenu, setToggleMainMenu] = useState(false);
@@ -11,6 +12,10 @@ export default function Header({ theme, position }) {
   const [token, setToken] = useState("");
   const [isAuth, setIsAuth] = useState(false);
   const { state } = useGlobalContext();
+
+  const {
+    state: { cart },
+  } = CartState();
 
   const prevCart = useRef(state?.cart || {});
 
@@ -162,6 +167,7 @@ export default function Header({ theme, position }) {
                     to="/cart"
                   >
                     <IconCart />
+                    <p>{cart.length}</p>
                   </Link>
                 </li>
               ) : (

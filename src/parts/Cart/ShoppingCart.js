@@ -4,9 +4,13 @@ import { Link } from "react-router-dom";
 
 import { useGlobalContext } from "helpers/hooks/useGlobalContext";
 import "helpers/format/currency";
+import { CartState } from "context/Context";
 
 export default function ShoppingCart() {
-  const { state, dispatch } = useGlobalContext();
+  const {
+    state: { cart },
+    dispatch,
+  } = CartState();
 
   return (
     <div className="w-full px-4 mb-4 md:w-8/12 md:mb-0" id="shopping-cart">
@@ -39,7 +43,7 @@ export default function ShoppingCart() {
         </div>
       </div>
 
-      {Object.keys(state.cart).length === 0 ? (
+      {cart.length === 0 ? (
         <p id="cart-empty" className="text-center py-8">
           Ooops... Cart is empty{" "}
           <Link to="/" className="underline">
@@ -47,47 +51,46 @@ export default function ShoppingCart() {
           </Link>
         </p>
       ) : (
-        Object.keys(state.cart).map((key) => {
-          const item = state.cart[key];
+        cart?.map((item, idx) => {
           return (
             <div
               className="flex flex-start flex-wrap items-center mb-4 -mx-4"
-              key={key}
+              key={idx}
             >
               <div className="px-4 flex-none">
                 <div className="" style={{ width: 90, height: 90 }}>
                   <img
-                    src={item.imgUrls[0]}
-                    alt={item.title}
                     className="object-cover rounded-xl w-full h-full"
+                    src={`http://localhost:8000/storage/images/${item.image}`}
                   />
                 </div>
               </div>
               <div className="px-4 w-auto flex-1 md:w-5/12">
                 <div className="">
                   <h6 className="font-semibold text-lg md:text-xl leading-8">
-                    {item.title}
+                    {item.product_name}
                   </h6>
-                  <span className="text-sm md:text-lg">
-                    {item.category.title}
-                  </span>
+
                   <h6 className="font-semibold text-base md:text-lg block md:hidden">
-                    {item.price.currency()}
+                    {item.price}
                   </h6>
                 </div>
               </div>
-              <div className="px-4 w-auto flex-none md:flex-1 md:w-5/12 hidden md:block">
+              {/* <div className="px-4 w-auto flex-none md:flex-1 md:w-5/12 hidden md:block">
                 <div className="">
                   <h6 className="font-semibold text-lg">
                     {item.price.currency()}
                   </h6>
                 </div>
-              </div>
+              </div> */}
               <div className="px-4 w-2/12">
                 <div className="text-center">
                   <button
                     onClick={() =>
-                      dispatch({ type: "REMOVE_FROM_CART", id: item.id })
+                      dispatch({
+                        type: "REMOVE_FROM_CART",
+                        payload: item,
+                      })
                     }
                     className="text-red-600 border-none focus:outline-none px-3 py-1"
                   >
