@@ -111,19 +111,6 @@ export default function Header({ theme, position }) {
                   Delivery
                 </Link>
               </li>
-              <li className="mx-3 py-6 md:py-0">
-                <Link
-                  to="/rewards"
-                  className={[
-                    "hover:underline",
-                    theme === "white"
-                      ? "text-black md:text-white "
-                      : "text-white md:text-black",
-                  ].join(" ")}
-                >
-                  Rewards
-                </Link>
-              </li>
             </ul>
           </div>
           <div className="w-auto">
