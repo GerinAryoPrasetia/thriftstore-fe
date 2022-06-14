@@ -32,8 +32,8 @@ const ProductList = () => {
   //   run(fetch({ url: "/api/products" }));
   // }, [run]);
   return (
-    <section className="mt-10">
-      <div className="container m-auto">
+    <section className="mt-10 container ml-10 mr-10">
+      <div className=" m-auto">
         <h2 className="font-bold text-3xl mb-4">All Products</h2>
         <div className="grid grid-cols-4 gap-4">
           {state.products?.map((prod) => {

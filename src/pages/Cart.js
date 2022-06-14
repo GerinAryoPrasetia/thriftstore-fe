@@ -27,7 +27,7 @@ export default function Cart() {
         <div className="container mx-auto px-4">
           <div className="flex -mx-4 flex-wrap">
             <ShoppingCart />
-            {/* <ShippingDetails /> */}
+            <ShippingDetails />
           </div>
         </div>
       </section>

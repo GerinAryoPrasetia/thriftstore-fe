@@ -12,10 +12,12 @@ const Cart = createContext();
 const initialState = {
   products: [],
   cart: [],
+  user: {},
 };
 
 const Context = ({ children }) => {
   const [products, setProducts] = useState([]);
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     console.log("mounted");
@@ -46,6 +48,38 @@ const Context = ({ children }) => {
       }
     };
     fetchProducts();
+  }, []);
+
+  useEffect(() => {
+    console.log("mounted");
+    const fetchUser = async () => {
+      const userId = await localStorage.getItem("user_id");
+      try {
+        const res = await fetch(`http://localhost:8000/api/user/${userId}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        });
+
+        let resJson = await res.json();
+        console.log(resJson);
+        if (resJson.status === "success") {
+          dispatch({
+            type: "INITIALIZE_USER",
+            payload: {
+              ...initialState,
+              user: resJson?.data,
+            },
+          });
+        } else {
+          console.log("NO DATA FOUND");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchUser();
   }, []);
 
   const [state, dispatch] = useReducer(cartReducer, initialState);

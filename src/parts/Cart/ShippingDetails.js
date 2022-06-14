@@ -6,11 +6,15 @@ import useAsync from "helpers/hooks/useAsync";
 import useForm from "helpers/hooks/useForm";
 import fetch from "helpers/fetch";
 import { useGlobalContext } from "helpers/hooks/useGlobalContext";
+import { CartState } from "context/Context";
 
 export default function ShippingDetails() {
   const history = useHistory();
   const { data, run, isLoading } = useAsync();
   const { state, dispatch } = useGlobalContext();
+  const {
+    state: { cart, user },
+  } = CartState();
 
   const { state: payload, fnUpdateState } = useForm({
     completeName: "",
@@ -22,6 +26,7 @@ export default function ShippingDetails() {
   });
 
   console.log(payload);
+  console.log(user);
 
   const isSubmitDisabled =
     Object.keys(payload).filter((key) => {

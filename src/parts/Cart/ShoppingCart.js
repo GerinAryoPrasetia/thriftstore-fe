@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -7,10 +7,19 @@ import "helpers/format/currency";
 import { CartState } from "context/Context";
 
 export default function ShoppingCart() {
+  const [total, setTotal] = useState();
   const {
     state: { cart },
     dispatch,
   } = CartState();
+
+  useEffect(() => {
+    if (cart.length > 0) {
+      setTotal(cart.reduce((acc, curr) => acc + Number(curr.price), 0));
+    }
+  }, [cart]);
+
+  console.log(total);
 
   return (
     <div className="w-full px-4 mb-4 md:w-8/12 md:mb-0" id="shopping-cart">
@@ -70,19 +79,13 @@ export default function ShoppingCart() {
                   <h6 className="font-semibold text-lg md:text-xl leading-8">
                     {item.product_name}
                   </h6>
-
-                  <h6 className="font-semibold text-base md:text-lg block md:hidden">
-                    {item.price}
-                  </h6>
                 </div>
               </div>
-              {/* <div className="px-4 w-auto flex-none md:flex-1 md:w-5/12 hidden md:block">
+              <div className="px-4 w-auto flex-none md:flex-1 md:w-5/12 hidden md:block">
                 <div className="">
-                  <h6 className="font-semibold text-lg">
-                    {item.price.currency()}
-                  </h6>
+                  <h6 className="font-semibold text-lg">Rp {item.price}</h6>
                 </div>
-              </div> */}
+              </div>
               <div className="px-4 w-2/12">
                 <div className="text-center">
                   <button
@@ -102,6 +105,15 @@ export default function ShoppingCart() {
           );
         })
       )}
+      <div>
+        <div>
+          <hr className="mb-6" />
+          <span className="font-bold">Sub Total : </span>
+          <span>
+            Rp {total} (@{cart.length} items)
+          </span>
+        </div>
+      </div>
     </div>
   );
 }

@@ -82,19 +82,6 @@ export default function Header({ theme, position }) {
                       : "text-black md:text-black",
                   ].join(" ")}
                 >
-                  Showcase
-                </Link>
-              </li>
-              <li className="mx-3 py-6 md:py-0">
-                <Link
-                  to="/catalog"
-                  className={[
-                    "hover:underline",
-                    theme === "white"
-                      ? "text-black md:text-white "
-                      : "text-white md:text-black",
-                  ].join(" ")}
-                >
                   Catalog
                 </Link>
               </li>
