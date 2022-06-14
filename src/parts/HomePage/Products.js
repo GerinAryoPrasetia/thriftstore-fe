@@ -91,6 +91,11 @@ const Products = () => {
                     {item.product_name}
                   </h5>
                   <span className="">{item.price.currency()}</span>
+                  <br />
+                  <span>
+                    <span className="font-bold">Seller : </span>{" "}
+                    {item.seller.name}
+                  </span>
                   <Link to={`/products/${item.id}`} className="stretched-link">
                     {/* <!-- fake children --> */}
                   </Link>

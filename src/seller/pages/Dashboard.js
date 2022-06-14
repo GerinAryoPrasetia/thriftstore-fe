@@ -15,7 +15,7 @@ const Dashboard = () => {
     return <Redirect to="/seller/login" />;
   }
   return (
-    <div className="flex flex-row">
+    <div className="flex flex-row h-full">
       <Sidebard />
     </div>
   );

@@ -16,6 +16,7 @@ import Dashboard from "seller/pages/Dashboard";
 import Upload from "seller/pages/Upload";
 import LoginSeller from "seller/pages/auth/Login";
 import RegisterSeller from "seller/pages/auth/Register";
+import Products from "seller/pages/Products";
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
           <Route path="/seller/upload" component={Upload} />
           <Route path="/seller/login" component={LoginSeller} />
           <Route path="/seller/register" component={RegisterSeller} />
+          <Route path="/seller/products" component={Products} />
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>

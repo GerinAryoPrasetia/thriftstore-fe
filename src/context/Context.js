@@ -12,7 +12,7 @@ const Cart = createContext();
 const initialState = {
   products: [],
   cart: [],
-  user: {},
+  // user: {},
 };
 
 const Context = ({ children }) => {
@@ -33,6 +33,7 @@ const Context = ({ children }) => {
         let resJson = await res.json();
         console.log(resJson);
         if (resJson.status === "success") {
+          console.log("INITILIAE PROD");
           dispatch({
             type: "INITIALIZE",
             payload: {
@@ -47,40 +48,70 @@ const Context = ({ children }) => {
         console.log(error);
       }
     };
+    // const fetchUser = async () => {
+    //   const userId = await localStorage.getItem("user_id");
+    //   try {
+    //     const res = await fetch(`http://localhost:8000/api/user/${userId}`, {
+    //       method: "GET",
+    //       headers: {
+    //         "Content-Type": "application/json",
+    //       },
+    //     });
+
+    //     let resJson = await res.json();
+    //     console.log(resJson);
+    //     if (resJson.status === "success") {
+    //       console.log("INITIALIZE USER");
+    //       dispatch({
+    //         type: "INITIALIZE_USER",
+    //         payload: {
+    //           ...initialState,
+    //           user: resJson?.data,
+    //         },
+    //       });
+    //     } else {
+    //       console.log("NO DATA FOUND");
+    //     }
+    //   } catch (error) {
+    //     console.log(error);
+    //   }
+    // };
+    // fetchUser();
     fetchProducts();
   }, []);
 
-  useEffect(() => {
-    console.log("mounted");
-    const fetchUser = async () => {
-      const userId = await localStorage.getItem("user_id");
-      try {
-        const res = await fetch(`http://localhost:8000/api/user/${userId}`, {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        });
+  // useEffect(() => {
+  //   console.log("mounted");
+  //   const fetchUser = async () => {
+  //     const userId = await localStorage.getItem("user_id");
+  //     try {
+  //       const res = await fetch(`http://localhost:8000/api/user/${userId}`, {
+  //         method: "GET",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //       });
 
-        let resJson = await res.json();
-        console.log(resJson);
-        if (resJson.status === "success") {
-          dispatch({
-            type: "INITIALIZE_USER",
-            payload: {
-              ...initialState,
-              user: resJson?.data,
-            },
-          });
-        } else {
-          console.log("NO DATA FOUND");
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchUser();
-  }, []);
+  //       let resJson = await res.json();
+  //       console.log(resJson);
+  //       if (resJson.status === "success") {
+  //         console.log("INITIALIZE USER");
+  //         dispatch({
+  //           type: "INITIALIZE_USER",
+  //           payload: {
+  //             ...initialState,
+  //             user: resJson?.data,
+  //           },
+  //         });
+  //       } else {
+  //         console.log("NO DATA FOUND");
+  //       }
+  //     } catch (error) {
+  //       console.log(error);
+  //     }
+  //   };
+  //   fetchUser();
+  // }, []);
 
   const [state, dispatch] = useReducer(cartReducer, initialState);
   console.log("context", state);

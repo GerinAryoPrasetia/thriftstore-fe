@@ -16,9 +16,9 @@ const Sidebard = () => {
     await localStorage.removeItem("id_seller");
   };
   return (
-    <div>
-      <aside class="w-64" aria-label="Sidebar">
-        <div class="overflow-y-auto py-4 px-3 bg-gray-200 rounded dark:bg-gray-800 h-full">
+    <div className="bg-gray-200 h-full">
+      <aside class="w-64 bg-gray-200 h-full" aria-label="Sidebar">
+        <div class="overflow-y-auto py-4 px-3  rounded dark:bg-gray-800 h-full">
           <ul class="space-y-2">
             <li>
               <a
@@ -34,12 +34,11 @@ const Sidebard = () => {
                   <path d="M2 10a8 8 0 018-8v8h8a8 8 0 11-16 0z"></path>
                   <path d="M12 2.252A8.014 8.014 0 0117.748 8H12V2.252z"></path>
                 </svg>
-                {/* {data === null ? (
-                  "please login"
+                {data ? (
+                  <p className="ml-3">Hi, {data.name}</p>
                 ) : (
-                  <span class="ml-3">Hi, {data.name}</span>
-                )}  */}
-                {/* <span class="ml-3">Hi, {data.name}</span> */}
+                  <p>Please, login</p>
+                )}
               </a>
             </li>
             <li>
