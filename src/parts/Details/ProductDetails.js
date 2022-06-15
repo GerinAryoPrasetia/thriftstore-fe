@@ -96,6 +96,7 @@ export default function ProductDetails({ data }) {
                   payload: data,
                 })
               }
+              style={{ backgroundColor: "#75ACC0" }}
             >
               <svg
                 className="fill-current mr-3"

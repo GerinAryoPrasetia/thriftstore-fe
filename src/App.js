@@ -17,6 +17,7 @@ import Upload from "seller/pages/Upload";
 import LoginSeller from "seller/pages/auth/Login";
 import RegisterSeller from "seller/pages/auth/Register";
 import Products from "seller/pages/Products";
+import ShippingOverview from "parts/Cart/ShippingOverview";
 
 function App() {
   return (
@@ -31,12 +32,14 @@ function App() {
           <Route path="/congratulation" component={Congratulation} />
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
+          <Route path="/checkout" component={ShippingOverview} />
           {/* seller */}
           <Route path="/seller/dashboard" component={Dashboard} />
           <Route path="/seller/upload" component={Upload} />
           <Route path="/seller/login" component={LoginSeller} />
           <Route path="/seller/register" component={RegisterSeller} />
           <Route path="/seller/products" component={Products} />
+
           <Route path="*" component={NotFound} />
         </Switch>
       </Router>

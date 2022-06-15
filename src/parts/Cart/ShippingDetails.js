@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useHistory } from "react-router-dom";
 
@@ -8,8 +8,7 @@ import fetch from "helpers/fetch";
 import { useGlobalContext } from "helpers/hooks/useGlobalContext";
 import { CartState } from "context/Context";
 
-export default function ShippingDetails() {
-  const history = useHistory();
+export default function ShippingDetails({ navigation }) {
   const { data, run, isLoading } = useAsync();
   const { state, dispatch } = useGlobalContext();
   const [name, setName] = useState("");
@@ -17,6 +16,8 @@ export default function ShippingDetails() {
   const [address, setAddress] = useState("");
   const [phone, setPhone] = useState("");
   const [submitDisabled, setSubmitDisabled] = useState(true);
+  const [total, setTotal] = useState();
+  const history = useHistory();
 
   const {
     state: { cart },
@@ -32,13 +33,21 @@ export default function ShippingDetails() {
   });
 
   console.log(payload);
-  // console.log(user);
 
-  const handleSubmit = () => {};
+  const handleSubmit = () => {
+    history.push("/checkout", {
+      name: name,
+      address: address,
+      email: email,
+      total: total,
+    });
+  };
 
-  // React.useEffect(() => {
-  //   run(fetch({ url: `/api/checkout/meta` }));
-  // }, [run]);
+  useEffect(() => {
+    if (cart.length > 0) {
+      setTotal(cart.reduce((acc, curr) => acc + Number(curr.price), 0));
+    }
+  }, [cart]);
 
   async function fnSubmit(event) {
     event.preventDefault();
